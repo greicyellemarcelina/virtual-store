@@ -2,6 +2,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Loja Virtual</title>
     <link rel="stylesheet" type="text/css" href="css/universal.css">
     <link rel="stylesheet" type="text/css" href="css/top.css">
     <link rel="stylesheet" type="text/css" href="css/body.css">
@@ -22,7 +23,7 @@ require_once("db/db.php");
 
 <body>
     <div class="container-universal">
-        <div class="container-top">
+        <div class="container-top transition-soft head-fix">
             <div class="container-top-1">
                 <span class="color-white font-size-12 font-balsamiq " id="span-top-1">
                     Mínimo de compras R$400 | Prazo para postagem: 20 a 30 dias úteis
@@ -35,7 +36,6 @@ require_once("db/db.php");
                 </div>
                 <div class="container-logo">
                     <img src="img/logo.png" id="img-logo-width">
-
                 </div>
                 <div class="container-register">
                     <div class="register-child-1">
@@ -67,10 +67,178 @@ require_once("db/db.php");
 
         </div>
         <div class="container-body">
-
+            <div class="body-1">
+                <p class="txt-body-1-info color-black font-size-11 font-balsamiq">
+                    Pague em até 2x sem juros no cartão de crédito ou em até 12x com juros, <br>ou a vista com 5% de desconto por
+                    depósito/transferência bancaria. Boas Compras 🛒
+                </p>
+            </div>
+            <div class="container-products">
+                <div class="product-item">
+                    <div class="product-item-img">
+                        <img src="img/item1.png" id="product-item-img">
+                    </div>
+                    <div class="product-item-desc">
+                        <p class="txt-product-item font-size-12 font-narrow color-black">
+                            CONJUNTO CORAÇÃO
+                        </p>
+                    </div>
+                    <div class="product-item-price">
+                        <p class="txt-product-price font-size-16 font-narrow color-black">
+                            R$ 60,00
+                        </p>
+                    </div>
+                    <div class="product-item-parc">
+                        <p class="txt-product-parc font-size-14 font-narrow color-rosybrown">
+                            <strong>2</strong>x de <strong>R$27,50</strong> sem juros
+                        </p>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-item-img">
+                        <img src="img/item1.png" id="product-item-img">
+                    </div>
+                    <div class="product-item-desc">
+                        <p class="txt-product-item font-size-12 font-narrow color-black">
+                            CONJUNTO CORAÇÃO
+                        </p>
+                    </div>
+                    <div class="product-item-price">
+                        <p class="txt-product-price font-size-16 font-narrow color-black">
+                            R$ 60,00
+                        </p>
+                    </div>
+                    <div class="product-item-parc">
+                        <p class="txt-product-parc font-size-14 font-narrow color-rosybrown">
+                            <strong>2</strong>x de <strong>R$27,50</strong> sem juros
+                        </p>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-item-img">
+                        <img src="img/item1.png" id="product-item-img">
+                    </div>
+                    <div class="product-item-desc">
+                        <p class="txt-product-item font-size-12 font-narrow color-black">
+                            CONJUNTO CORAÇÃO
+                        </p>
+                    </div>
+                    <div class="product-item-price">
+                        <p class="txt-product-price font-size-16 font-narrow color-black">
+                            R$ 60,00
+                        </p>
+                    </div>
+                    <div class="product-item-parc">
+                        <p class="txt-product-parc font-size-14 font-narrow color-rosybrown">
+                            <strong>2</strong>x de <strong>R$27,50</strong> sem juros
+                        </p>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-item-img">
+                        <img src="img/item1.png" id="product-item-img">
+                    </div>
+                    <div class="product-item-desc">
+                        <p class="txt-product-item font-size-12 font-narrow color-black">
+                            CONJUNTO CORAÇÃO
+                        </p>
+                    </div>
+                    <div class="product-item-price">
+                        <p class="txt-product-price font-size-16 font-narrow color-black">
+                            R$ 60,00
+                        </p>
+                    </div>
+                    <div class="product-item-parc">
+                        <p class="txt-product-parc font-size-14 font-narrow color-rosybrown">
+                            <strong>2</strong>x de <strong>R$27,50</strong> sem juros
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-btn-view-all">
+                <div class="btn-view-all">
+                    <a href="products.php" class="btn-products">
+                        <p class="txt-view-all font-size-16 color-white font-narrow">
+                            VER TODOS OS PRODUTOS
+                        </p>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="container-footer">
+            <div class="container-footer-1">
 
+                <div class="footer-navigation-1">
+                    <label class="color-white font-size-16 font-narrow">
+                        NAVEGAÇÃO
+                    </label>
+
+                    <div class="footer-navigation-home">
+                        <a href="index.php" class="txt-footer-home font-condensed font-size-16 color-white">
+                            INÍCIO
+                        </a>
+                    </div>
+                    <div class="footer-navigation-products">
+                        <a href="products.php" class="txt-footer-product font-condensed font-size-16 color-white">
+                            PRODUTOS
+                        </a>
+                    </div>
+                    <div class="footer-navigation-contact">
+                        <a href="contact.php" class="txt-footer-contact font-condensed font-size-16 color-white">
+                            CONTATO
+                        </a>
+                    </div>
+
+                </div>
+                <div class="footer-payment-post">
+                    <label class="color-white font-size-16 font-narrow">
+                        FORMAS DE PAGAMENTO
+                    </label>
+                    <div class="footer-payment">
+                        <div class="footer-payment-item">
+                            <img src="img/payment/visa.png" class="img-footer-payment">
+
+                        </div>
+                        <div class="footer-payment-item">
+                            <img src="img/payment/master.jpg" class="img-footer-payment">
+                        </div>
+                        <div class="footer-payment-item">
+                            <img src="img/payment/mercado-pago.png" class="img-footer-payment">
+                        </div>
+                    </div>
+
+                    <label class="color-white font-size-16 font-narrow" id="txt-post">
+                        FORMAS DE ENVIO
+                    </label>
+                    <div class="footer-post">
+                        <div class="footer-post-item">
+                            <img src="img/post/correios.jpg" class="img-footer-post">
+                        </div>
+                        <div class="footer-post-item">
+                            <img src="img/post/sedex.png" class="img-footer-post">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <label class="color-white font-size-16 font-narrow">
+                        CONTATO
+                    </label>
+                    <div class="footer-contact-tel">
+                        <i class="fa fa-whatsapp color-white" aria-hidden="true"></i>
+                        <span class="color-white font-size-14 font-narrow">
+                            (11) 9999-9999
+                        </span>
+                    </div>
+                    <div class="footer-contact-email">
+                        <i class="fa fa-envelope-o color-white" aria-hidden="true"></i>
+                        <span class="color-white font-size-14 font-narrow">
+                            contato@emmail.com
+                        </span>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
     </div>

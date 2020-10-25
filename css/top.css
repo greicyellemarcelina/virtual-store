@@ -7,9 +7,21 @@
     background:white;
     height: 270px;
     width: 100vw;
-    position: fixed;
-
 }
+.transition-soft {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.head-fix{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1040;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
 .container-top-1 {
     height: 32px;
     background-color: black;
@@ -76,7 +88,8 @@
 .container-top-3 {
     height: 70px;
     display: flex;
-    justify-content: CENTER;
+    justify-content: center;
+    align-items: center;
 }
 
 .top-3-child-1, .top-3-child-2, .top-3-child-3 {
@@ -90,8 +103,4 @@
     color: #F27092;
     text-decoration: none;
 }
-#text-home:active {
-    color: #F27092;
 
-
-}

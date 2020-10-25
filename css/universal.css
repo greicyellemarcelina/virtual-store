@@ -5,32 +5,44 @@
 }
 
 .container-universal {
-    background: rosybrown;
+    /*background: rosybrown;*/
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 }
 
 /* colors*/
 .color-white {
     color: white;
 }
-
 .color-black {
     color: black;
 }
-
 .color-f27092 {
     color: #F27092;
 }
+.color-rosybrown {
+    color: rosybrown;
+}
 
 /* font-sizes */
+.font-size-11 {
+    font-size: 11px;
+}
 .font-size-12 {
     font-size: 12px;
 }
-
+.font-size-14 {
+    font-size: 14px;
+}
+.font-size-16 {
+    font-size: 16px;
+}
 .font-size-24 {
     font-size: 24px !important;
 }
+
+
+
 /* font-families */
 .font-balsamiq {
     font-family: 'Balsamiq Sans', cursive;
