@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.container-body {
+    background:rebeccapurple;
+    height: 800px;
+
+}
