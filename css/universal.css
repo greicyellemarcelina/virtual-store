@@ -41,8 +41,6 @@
     font-size: 24px !important;
 }
 
-
-
 /* font-families */
 .font-balsamiq {
     font-family: 'Balsamiq Sans', cursive;
@@ -50,7 +48,6 @@
 .font-narrow {
     font-family: 'PT Sans Narrow', sans-serif;
 }
-
 .font-condensed {
     font-family: 'Open Sans Condensed', sans-serif;
 }
@@ -58,6 +55,9 @@
 /* paddings */
 .padding-left-6 {
     padding-left: 6px;
+}
+.padding-12 {
+    padding: 12px;
 }
 
 /* margins */

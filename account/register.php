@@ -2,23 +2,20 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Loja Virtual</title>
-    <link rel="stylesheet" type="text/css" href="css/universal.css">
-    <link rel="stylesheet" type="text/css" href="css/top.css">
-    <link rel="stylesheet" type="text/css" href="css/body.css">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <title>Criar Minha Conta</title>
+    <link rel="stylesheet" type="text/css" href="../css/universal.css">
+    <link rel="stylesheet" type="text/css" href="../css/top.css">
+    <link rel="stylesheet" type="text/css" href="../css/body.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
     <!-- imports -->
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Open+Sans+Condensed:wght@300&family=PT+Sans+Narrow&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/3ebafaacf8.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-
-
-
 </head>
 <?php
 //db
-require_once("db/db.php");
+require_once("../db/db.php");
 ?>
 
 <body>
@@ -35,11 +32,11 @@ require_once("db/db.php");
                     <i class="fa fa-search" aria-hidden="true" id="icon-search"></i>
                 </div>
                 <div class="container-logo">
-                    <img src="img/logo.png" id="img-logo-width">
+                    <img src="../img/logo.png" id="img-logo-width">
                 </div>
                 <div class="container-register">
                     <div class="register-child-1">
-                        <a href="account/register.php" class="font-condensed color-black">CADASTRE-SE</a>
+                        <a href="register.php" class="font-condensed color-black">CADASTRE-SE</a>
                     </div>
                     <span>|</span>
                     <div class="register-child-2">
@@ -55,7 +52,7 @@ require_once("db/db.php");
             </div>
             <div class="container-top-3">
                 <div class="top-3-child-1 margin-right-18">
-                    <a href="index.php" class="font-narrow color-f27092 color-hover">INÍCIO</a>
+                    <a href="../index.php" class="font-narrow color-f27092 color-hover">INÍCIO</a>
                 </div>
                 <div class="top-3-child-2 margin-right-18">
                     <a href="index.php" class="font-narrow color-black color-hover">PRODUTOS</a>
@@ -69,97 +66,43 @@ require_once("db/db.php");
         <div class="container-body">
             <div class="body-1">
                 <p class="txt-body-1-info color-black font-size-11 font-balsamiq">
-                    Pague em até 2x sem juros no cartão de crédito ou em até 12x com juros, <br>ou a vista com 5% de desconto por
-                    depósito/transferência bancaria. Boas Compras 🛒
+                    Compre mais rápido e acompanhe seus pedidos em um só lugar!
                 </p>
             </div>
-            <div class="container-products">
-                <div class="product-item">
-                    <div class="product-item-img">
-                        <img src="img/item1.png" id="product-item-img">
-                    </div>
-                    <div class="product-item-desc">
-                        <p class="txt-product-item font-size-12 font-narrow color-black">
-                            CONJUNTO CORAÇÃO
-                        </p>
-                    </div>
-                    <div class="product-item-price">
-                        <p class="txt-product-price font-size-16 font-narrow color-black">
-                            R$ 60,00
-                        </p>
-                    </div>
-                    <div class="product-item-parc">
-                        <p class="txt-product-parc font-size-14 font-narrow color-rosybrown">
-                            <strong>2</strong>x de <strong>R$27,50</strong> sem juros
-                        </p>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-item-img">
-                        <img src="img/item1.png" id="product-item-img">
-                    </div>
-                    <div class="product-item-desc">
-                        <p class="txt-product-item font-size-12 font-narrow color-black">
-                            CONJUNTO CORAÇÃO
-                        </p>
-                    </div>
-                    <div class="product-item-price">
-                        <p class="txt-product-price font-size-16 font-narrow color-black">
-                            R$ 60,00
-                        </p>
-                    </div>
-                    <div class="product-item-parc">
-                        <p class="txt-product-parc font-size-14 font-narrow color-rosybrown">
-                            <strong>2</strong>x de <strong>R$27,50</strong> sem juros
-                        </p>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-item-img">
-                        <img src="img/item1.png" id="product-item-img">
-                    </div>
-                    <div class="product-item-desc">
-                        <p class="txt-product-item font-size-12 font-narrow color-black">
-                            CONJUNTO CORAÇÃO
-                        </p>
-                    </div>
-                    <div class="product-item-price">
-                        <p class="txt-product-price font-size-16 font-narrow color-black">
-                            R$ 60,00
-                        </p>
-                    </div>
-                    <div class="product-item-parc">
-                        <p class="txt-product-parc font-size-14 font-narrow color-rosybrown">
-                            <strong>2</strong>x de <strong>R$27,50</strong> sem juros
-                        </p>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-item-img">
-                        <img src="img/item1.png" id="product-item-img">
-                    </div>
-                    <div class="product-item-desc">
-                        <p class="txt-product-item font-size-12 font-narrow color-black">
-                            CONJUNTO CORAÇÃO
-                        </p>
-                    </div>
-                    <div class="product-item-price">
-                        <p class="txt-product-price font-size-16 font-narrow color-black">
-                            R$ 60,00
-                        </p>
-                    </div>
-                    <div class="product-item-parc">
-                        <p class="txt-product-parc font-size-14 font-narrow color-rosybrown">
-                            <strong>2</strong>x de <strong>R$27,50</strong> sem juros
-                        </p>
-                    </div>
+            <div class="container-form">
+                <div class="container-form-1">
+                    <form action="ajax-register.php" method="POST">
+                        <div class="padding-12">
+                            <label class="font-narrow">NOME COMPLETO</label><br>
+                            <input class="font-narrow" type="text" name="txt-name" id="txt-name" placeholder="ex.: Maria Silva">
+                        </div>
+                        <div class="padding-12">
+                            <label class="font-narrow">E-MAIL</label><br>
+                            <input class="font-narrow" type="text" name="txt-email" id="txt-email" placeholder="ex.: mariasilva@example.com">
+
+                        </div>
+                        <div class="padding-12">
+                            <label class="font-narrow">TELEFONE</label><br>
+                            <input class="font-narrow" type="number" name="txt-tel" id="txt-tel" placeholder="ex.: 11999999999">
+
+                        </div>
+                        <div class="padding-12">
+                            <label class="font-narrow">SENHA</label><br>
+                            <input class="font-narrow" type="password" name="txt-password" id="txt-password">
+                        </div>
+                        <div class="padding-12">
+                            <label class="font-narrow">CONFIRMAR SENHA</label><br>
+                            <input class="font-narrow" type="password" name="txt-password-confirm" id="txt-password-confirm">
+                        </div>
+                    </form>
                 </div>
             </div>
+            <br>
             <div class="container-btn-view-all">
                 <div class="btn-view-all">
                     <a href="products.php" class="btn-products">
                         <p class="txt-view-all font-size-16 color-white font-narrow">
-                            VER TODOS OS PRODUTOS
+                            CADASTRE-SE
                         </p>
                     </a>
                 </div>
@@ -174,7 +117,7 @@ require_once("db/db.php");
                     </label>
 
                     <div class="footer-navigation-home">
-                        <a href="index.php" class="txt-footer-home font-condensed font-size-16 color-white">
+                        <a href="../index.php" class="txt-footer-home font-condensed font-size-16 color-white">
                             INÍCIO
                         </a>
                     </div>
@@ -196,14 +139,14 @@ require_once("db/db.php");
                     </label>
                     <div class="footer-payment">
                         <div class="footer-payment-item">
-                            <img src="img/payment/visa.png" class="img-footer-payment">
+                            <img src="../img/payment/visa.png" class="img-footer-payment">
 
                         </div>
                         <div class="footer-payment-item">
-                            <img src="img/payment/master.jpg" class="img-footer-payment">
+                            <img src="../img/payment/master.jpg" class="img-footer-payment">
                         </div>
                         <div class="footer-payment-item">
-                            <img src="img/payment/mercado-pago.png" class="img-footer-payment">
+                            <img src="../img/payment/mercado-pago.png" class="img-footer-payment">
                         </div>
                     </div>
 
@@ -212,10 +155,10 @@ require_once("db/db.php");
                     </label>
                     <div class="footer-post">
                         <div class="footer-post-item">
-                            <img src="img/post/correios.jpg" class="img-footer-post">
+                            <img src="../img/post/correios.jpg" class="img-footer-post">
                         </div>
                         <div class="footer-post-item">
-                            <img src="img/post/sedex.png" class="img-footer-post">
+                            <img src="../img/post/sedex.png" class="img-footer-post">
 
                         </div>
                     </div>

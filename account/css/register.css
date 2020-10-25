@@ -1,0 +1,15 @@
+.container-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.container-form-1 {
+    display: flex;
+    justify-content: center;
+}
+#txt-name, #txt-email, #txt-tel, #txt-password, #txt-password-confirm {
+    width: 600px;
+    height: 42px;
+    border: 1px solid #cccbcb;
+    padding: 4px;
+}
