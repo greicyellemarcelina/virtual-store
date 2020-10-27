@@ -2,10 +2,10 @@
 $servername = "localhost";
 $database = "loja_virtual";
 $username = "root";
-$password = "";
+$pass = "";
 
 //Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = mysqli_connect($servername, $username, $pass, $database);
 
 // Check connection
 if (!$conn) {

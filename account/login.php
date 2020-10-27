@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Criar Minha Conta</title>
+    <title>Identificação</title>
     <link rel="stylesheet" type="text/css" href="../css/universal.css">
     <link rel="stylesheet" type="text/css" href="../css/top.css">
     <link rel="stylesheet" type="text/css" href="../css/body.css">
@@ -15,6 +16,7 @@
 <?php
 //db
 require_once("../db/db.php");
+
 ?>
 
 <body>
@@ -54,7 +56,7 @@ require_once("../db/db.php");
                     <a href="../index.php" class="font-narrow color-f27092 color-hover">INÍCIO</a>
                 </div>
                 <div class="top-3-child-2 margin-right-18">
-                    <a href="../products.php" class="font-narrow color-black color-hover">PRODUTOS</a>
+                    <a href="index.php" class="font-narrow color-black color-hover">PRODUTOS</a>
                 </div>
                 <div class="top-3-child-3">
                     <a href="../contact/index.php" class="font-narrow color-black color-hover">CONTATO</a>
@@ -62,7 +64,7 @@ require_once("../db/db.php");
             </div>
 
         </div>
-        <div class="container-body">
+        <div class="container-body-login">
             <div class="body-1">
                 <p class="txt-body-1-info color-black font-size-11 font-balsamiq">
                     Compre mais rápido e acompanhe seus pedidos em um só lugar!
@@ -70,67 +72,39 @@ require_once("../db/db.php");
             </div>
             <div class="container-form">
                 <div class="container-form-1">
-                    <form action="ajax-register.php" method="POST">
+                    <form action="index.php" method="POST">
                         <div class="padding-12">
-                            <label class="font-narrow">NOME COMPLETO</label>
-                            <div>
-                                <span id="messageErrorName" style="color: red; font-size: 11px"></span>
-                            </div>
-                            <input class="font-narrow" type="text" name="txt-name" id="txt-name" placeholder="ex.: Maria Silva">
-                        </div>
-                        <div class="padding-12">
-                            <label class="font-narrow">E-MAIL</label>
-                            <div>
-                                <span id="messageErrorEmail" style="color: red; font-size: 11px"></span>
-                            </div>
+                            <label class="font-narrow">E-MAIL</label><br>
                             <input class="font-narrow" type="text" name="txt-email" id="txt-email" placeholder="ex.: mariasilva@example.com">
+
                         </div>
                         <div class="padding-12">
-                            <label class="font-narrow">TELEFONE</label>
-                            <div>
-                                <span id="messageErrorPhone" style="color: red; font-size: 11px"></span>
-                            </div>
-                            <input class="font-narrow" type="number" name="txt-tel" id="txt-tel" placeholder="ex.: 11999999999">
-                        </div>
-                        <div class="padding-12">
-                            <label class="font-narrow">SENHA</label> 
-                            <div>
-                                <span id="messageErrorPassword" style="color: red; font-size: 11px"></span>
-                            </div>
+                            <label class="font-narrow">SENHA</label><br>
                             <input class="font-narrow" type="password" name="txt-password" id="txt-password">
                         </div>
-                        <div class="padding-12">
-                            <label class="font-narrow">CONFIRMAR SENHA</label>
-                            <div>
-                                <span id="messageErrorConfirmPassword" style="color: red; font-size: 11px"></span>
-                            </div>
-                            <input class="font-narrow" type="password" name="txt-confirm-password" id="txt-confirm-password">
+                        <div>
+                            <a class="color-b2b0b0" href="">
+                                <p class="txt-forgot-password font-balsamiq font-size-11 color-b2b0b0">Esqueceu a senha?</p>
+                            </a>
                         </div>
-                        <br>
-                        <div class="container-btn-view-all">
-                            <div class="btn-view-all">
-                                <button type="button" class="btn-cad-user" id="btn-ajax-register">
-                                    <p class="txt-view-all font-size-16 color-white font-narrow">
-                                        CADASTRE-SE
+                        <div class="container-btn-login padding-12">
+                            <div class="btn-login">
+                                <button type="submit" class="btn-login" id="btn-login">
+                                    <p class="txt-login font-size-16 color-white font-narrow">
+                                        INICIAR SESSÃO
                                     </p>
                                 </button>
                             </div>
-                        </div>
-                        <br>
-                        <div class="container-account-exist">
-                            <p class="txt-account-exist font-balsamiq font-size-11 color-black">
-                                Já possui uma conta?
-                                <a class="txt-init-session color-black font-size-12" href="login.php">
-                                    <strong>Iniciar Sessão</strong>
-                                </a>
-                            </p>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <br>
-        <br>
+        <div class="container-register-login">
+            <p class="font-size-12 font-balsamiq">
+                Não possui uma conta? <a class="txt-not-account color-black" href="register.php"><strong>Cadastre-se</strong></a>
+            </p>
+        </div>
         <div class="container-footer">
             <div class="container-footer-1">
 
@@ -154,7 +128,6 @@ require_once("../db/db.php");
                             CONTATO
                         </a>
                     </div>
-
                 </div>
                 <div class="footer-payment-post">
                     <label class="color-white font-size-16 font-narrow">
@@ -163,7 +136,6 @@ require_once("../db/db.php");
                     <div class="footer-payment">
                         <div class="footer-payment-item">
                             <img src="../img/payment/visa.png" class="img-footer-payment">
-
                         </div>
                         <div class="footer-payment-item">
                             <img src="../img/payment/master.jpg" class="img-footer-payment">
@@ -172,7 +144,6 @@ require_once("../db/db.php");
                             <img src="../img/payment/mercado-pago.png" class="img-footer-payment">
                         </div>
                     </div>
-
                     <label class="color-white font-size-16 font-narrow" id="txt-post">
                         FORMAS DE ENVIO
                     </label>
@@ -201,71 +172,13 @@ require_once("../db/db.php");
                             contact@emmail.com
                         </span>
                     </div>
+
                 </div>
             </div>
         </div>
+
     </div>
+
 </body>
 
 </html>
-
-<script>
-    function isEmail(email) {
-        var resp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return resp.test(String(email).toLowerCase());
-    }
-
-    const button = document.getElementById("btn-ajax-register");
-    button.addEventListener("click", async () => {
-        const name = document.getElementById("txt-name").value;
-        const email = document.getElementById("txt-email").value;
-        const telephone = document.getElementById("txt-tel").value;
-        const password = document.getElementById("txt-password").value;
-        const confirmPassword = document.getElementById("txt-confirm-password").value;
-
-        let bool = true;
-
-        if (bool) {
-            if (name.length < 5) {
-                document.getElementById("messageErrorName").innerHTML = '* Por favor digite seu nome completo.';
-            } else {
-                document.getElementById("messageErrorName").innerHTML = '';
-            }
-            if (email == '') {
-                if (!isEmail(email)) {
-                    document.getElementById("messageErrorEmail").innerHTML = '* Por favor digite um e-mail válido.';
-                }
-            } else {
-                document.getElementById("messageErrorEmail").innerHTML = '';
-            }
-            if (telephone < 11) {
-                document.getElementById("messageErrorPhone").innerHTML = '* Por favor digite um telefone válido.';
-            } else {
-                document.getElementById("messageErrorPhone").innerHTML = '';
-            }
-
-            if (password.length < 8) {
-                document.getElementById("messageErrorPassword").innerHTML = '* Tamanho mínimo: 8 caracteres.';
-            } else {
-                document.getElementById("messageErrorPassword").innerHTML = '';
-            }
-            if (confirmPassword != password) {
-                document.getElementById("messageErrorConfirmPassword").innerHTML = '* As senhas não conferem.';
-            } else {
-                document.getElementById("messageErrorConfirmPassword").innerHTML = '';
-            }
-            bool = false;
-            if (!bool) {
-            const req = await fetch("ajax-register.php", { // COM POST + FORM
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                method: "POST",
-                body: "name=" + name + "&email=" + email + "&tel=" + telephone + "&password=" + password
-            });
-
-            const res = await req.json();
-            window.location.href = 'login.php';
-            }}
-        });
-</script>

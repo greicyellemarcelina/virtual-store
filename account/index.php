@@ -1,12 +1,53 @@
+<?php
+session_start();
+require_once("../db/db.php");
+
+$email = '';
+$password = '';
+
+$email = $_POST['txt-email'];
+$password = MD5($_POST['txt-password']);
+
+$query = ("SELECT * FROM `user` WHERE `email` = '$email' AND `password` = '$password'");
+$result = mysqli_query($conn, $query);
+$userCredential = mysqli_fetch_assoc($result);
+
+if (!$userCredential) {
+?>
+    <script>
+        window.location.href = "login.php";
+        alert('Você precisa fazer login');
+    </script>
+<?php
+    session_destroy();
+} else {
+    $_SESSION["id"] = $userCredential['id'];
+    $_SESSION["name"] = $userCredential['name'];
+    $_SESSION["email"] = $userCredential['email'];
+}
+
+$id = $_SESSION['id'];
+
+#######################################################
+
+$query = ("SELECT * FROM `user` WHERE `id` = $id");
+$result = mysqli_query($conn, $query);
+$userInfo = mysqli_fetch_assoc($result);
+
+#######################################################
+
+?>
 <!DOCTYPE html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Loja Virtual</title>
-    <link rel="stylesheet" type="text/css" href="css/universal.css">
-    <link rel="stylesheet" type="text/css" href="css/top.css">
-    <link rel="stylesheet" type="text/css" href="css/body.css">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../css/universal.css">
+    <link rel="stylesheet" type="text/css" href="../css/top.css">
+    <link rel="stylesheet" type="text/css" href="../css/body.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+
     <!-- imports -->
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Open+Sans+Condensed:wght@300&family=PT+Sans+Narrow&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/3ebafaacf8.js"></script>
@@ -16,10 +57,7 @@
 
 
 </head>
-<?php
-//db
-require_once("db/db.php");
-?>
+<html>
 
 <body>
     <div class="container-universal">
@@ -35,15 +73,32 @@ require_once("db/db.php");
                     <i class="fa fa-search" aria-hidden="true" id="icon-search"></i>
                 </div>
                 <div class="container-logo">
-                    <img src="img/logo.png" id="img-logo-width">
+                    <img src="../img/logo.png" id="img-logo-width">
                 </div>
                 <div class="container-register">
-                    <div class="register-child-1">
-                        <a href="account/register.php" class="font-condensed color-black">CADASTRE-SE</a>
-                    </div>
-                    <span>|</span>
-                    <div class="register-child-2">
-                        <a href="account/login.php" class="font-condensed color-black"> INICIAR SESSÃO</a>
+                    <div class="padding-right-32">
+                        <div class="register-child-4">
+                            <a class="link-my-account color-f27092" href="my-account.php">
+                                <div class="register-child-4-icon padding-right-6">
+                                    <i class="fa fa-user-circle-o icon-user-name font-size-14" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <p class="txt-user-name font-size-16 font-narrow">
+                                        Olá, <?= $userInfo['name']; ?>
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="padding-left-4 padding-right-4 color-d2d2d2">
+                                |
+                            </div>
+                            <form method="POST" action="ajax-signout.php">
+                                <div class="padding-left-4 padding-top-2 font-size-14 font-narrow">
+                                    <button type="submit" class="link-signout color-black" id="btn-ajax-signout">
+                                        Sair
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="register-child-3">
                         <i class="fa fa-cart-arrow-down font-size-24" aria-hidden="true"></i>
@@ -51,19 +106,14 @@ require_once("db/db.php");
                             <p class="color-white font-size-12 padding-left-6">0</p>
                         </div>
                     </div>
-                    <div class="register-child-3">
-                        <div class="">
-                            <p class="color-black font-size-12 padding-left-6"></p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="container-top-3">
                 <div class="top-3-child-1 margin-right-18">
-                    <a href="index.php" class="font-narrow color-f27092 color-hover">INÍCIO</a>
+                    <a href="../index.php" class="font-narrow color-f27092 color-hover">INÍCIO</a>
                 </div>
                 <div class="top-3-child-2 margin-right-18">
-                    <a href="products.php" class="font-narrow color-black color-hover">PRODUTOS</a>
+                    <a href="../products.php" class="font-narrow color-black color-hover">PRODUTOS</a>
                 </div>
                 <div class="top-3-child-3">
                     <a href="contact/index.php" class="font-narrow color-black color-hover">CONTATO</a>
@@ -81,7 +131,7 @@ require_once("db/db.php");
             <div class="container-products">
                 <div class="product-item">
                     <div class="product-item-img">
-                        <img src="img/item1.png" id="product-item-img">
+                        <img src="../img/item1.png" id="product-item-img">
                     </div>
                     <div class="product-item-desc">
                         <p class="txt-product-item font-size-12 font-narrow color-black">
@@ -101,7 +151,7 @@ require_once("db/db.php");
                 </div>
                 <div class="product-item">
                     <div class="product-item-img">
-                        <img src="img/item1.png" id="product-item-img">
+                        <img src="../img/item1.png" id="product-item-img">
                     </div>
                     <div class="product-item-desc">
                         <p class="txt-product-item font-size-12 font-narrow color-black">
@@ -121,7 +171,7 @@ require_once("db/db.php");
                 </div>
                 <div class="product-item">
                     <div class="product-item-img">
-                        <img src="img/item1.png" id="product-item-img">
+                        <img src="../img/item1.png" id="product-item-img">
                     </div>
                     <div class="product-item-desc">
                         <p class="txt-product-item font-size-12 font-narrow color-black">
@@ -141,7 +191,7 @@ require_once("db/db.php");
                 </div>
                 <div class="product-item">
                     <div class="product-item-img">
-                        <img src="img/item1.png" id="product-item-img">
+                        <img src="../img/item1.png" id="product-item-img">
                     </div>
                     <div class="product-item-desc">
                         <p class="txt-product-item font-size-12 font-narrow color-black">
@@ -201,14 +251,14 @@ require_once("db/db.php");
                     </label>
                     <div class="footer-payment">
                         <div class="footer-payment-item">
-                            <img src="img/payment/visa.png" class="img-footer-payment">
+                            <img src="../../img/payment/visa.png" class="img-footer-payment">
 
                         </div>
                         <div class="footer-payment-item">
-                            <img src="img/payment/master.jpg" class="img-footer-payment">
+                            <img src="../../img/payment/master.jpg" class="img-footer-payment">
                         </div>
                         <div class="footer-payment-item">
-                            <img src="img/payment/mercado-pago.png" class="img-footer-payment">
+                            <img src="../../img/payment/mercado-pago.png" class="img-footer-payment">
                         </div>
                     </div>
 
@@ -217,10 +267,10 @@ require_once("db/db.php");
                     </label>
                     <div class="footer-post">
                         <div class="footer-post-item">
-                            <img src="img/post/correios.jpg" class="img-footer-post">
+                            <img src="../../img/post/correios.jpg" class="img-footer-post">
                         </div>
                         <div class="footer-post-item">
-                            <img src="img/post/sedex.png" class="img-footer-post">
+                            <img src="../img/post/sedex.png" class="img-footer-post">
 
                         </div>
                     </div>
@@ -250,3 +300,23 @@ require_once("db/db.php");
 </body>
 
 </html>
+<script>
+    /*
+    const button = document.getElementById("btn-ajax-signout");
+
+    button.addEventListener("click", async () => {
+            const req = await fetch("ajax-signout.php", { // COM POST + FORM
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            method: "POST",
+            body: ""
+        });
+
+        const res = await req.json();
+alert(button);
+        //window.location.href = 'login.php';
+    
+    });
+    */
+</script>

@@ -8,9 +8,10 @@
     background: #696969;
     height: 200px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 .container-footer-1 {
     margin: 0px 100px 0px 100px;
