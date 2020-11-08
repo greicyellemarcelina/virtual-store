@@ -2,7 +2,6 @@
 
 session_start();
 session_destroy();
-
 $array_session = [
     $_SESSION['id'], 
     $_SESSION['name'], 
@@ -12,7 +11,10 @@ foreach ($array_session as $session) {
     unset($session);
 }
 
+
 ?>
 <script>
    window.location.href = 'login.php';
 </script>
+
+

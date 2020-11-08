@@ -1,0 +1,59 @@
+#txt-name-profile {
+    width: 600px;
+    height: 42px;
+    border: 1px solid #cccbcb;
+    padding: 4px;
+}
+
+#txt-email-profile, #txt-tel-profile {
+    width: 286px;
+    height: 42px;
+    border: 1px solid #cccbcb;
+    padding: 4px;
+} 
+#txt-street-profile {
+    width: 332px;
+    height: 42px;
+    border: 1px solid #cccbcb;
+    padding: 4px;
+}
+
+#txt-number-profile, #txt-state-profile {
+    width: 100px;
+    height: 42px;
+    border: 1px solid #cccbcb;
+    padding: 4px;
+}
+
+#txt-zip-code-profile {
+    width: 150px;
+    height: 42px;
+    border: 1px solid #cccbcb;
+    padding: 4px;
+}
+
+#txt-district-profile, #txt-city-profile  {
+    width: 242px;
+    height: 42px;
+    border: 1px solid #cccbcb;
+    padding: 4px;
+}
+
+.link-return:hover {
+    color: #F27092;
+}
+
+.btn-save {
+    border: 0.1px solid #F27092;
+    border-radius: 2px;
+    background: none;
+    float: right;
+}
+
+.btn-save:hover{
+    border: 0.1px solid #F27092;
+    color: white;
+    border-radius: 2px;
+    background: #F27092;
+    float: right;
+}

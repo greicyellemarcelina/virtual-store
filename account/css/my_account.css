@@ -1,0 +1,14 @@
+.container-user-info {
+    display: flex;
+    margin: 0px 100px 0 100px;
+    flex-direction: column;
+}
+tr, td {
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+thead {
+    font-size: 18px;
+}
+.txt-purchase-id:hover {
+    color: #F27092;
+}

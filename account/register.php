@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Criar Minha Conta</title>
@@ -70,7 +71,7 @@ require_once("../db/db.php");
             </div>
             <div class="container-form">
                 <div class="container-form-1">
-                    <form action="ajax-register.php" method="POST">
+                    <form action="#" method="POST">
                         <div class="padding-12">
                             <label class="font-narrow">NOME COMPLETO</label>
                             <div>
@@ -93,7 +94,7 @@ require_once("../db/db.php");
                             <input class="font-narrow" type="number" name="txt-tel" id="txt-tel" placeholder="ex.: 11999999999">
                         </div>
                         <div class="padding-12">
-                            <label class="font-narrow">SENHA</label> 
+                            <label class="font-narrow">SENHA</label>
                             <div>
                                 <span id="messageErrorPassword" style="color: red; font-size: 11px"></span>
                             </div>
@@ -210,19 +211,21 @@ require_once("../db/db.php");
 </html>
 
 <script>
+    
     function isEmail(email) {
         var resp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return resp.test(String(email).toLowerCase());
     }
 
     const button = document.getElementById("btn-ajax-register");
+
     button.addEventListener("click", async () => {
         const name = document.getElementById("txt-name").value;
         const email = document.getElementById("txt-email").value;
         const telephone = document.getElementById("txt-tel").value;
         const password = document.getElementById("txt-password").value;
         const confirmPassword = document.getElementById("txt-confirm-password").value;
-
+       
         let bool = true;
 
         if (bool) {
@@ -256,16 +259,18 @@ require_once("../db/db.php");
             }
             bool = false;
             if (!bool) {
-            const req = await fetch("ajax-register.php", { // COM POST + FORM
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                method: "POST",
-                body: "name=" + name + "&email=" + email + "&tel=" + telephone + "&password=" + password
-            });
+                
+                const req = await fetch("ajax-register.php", {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    method: "POST",
+                    body: "name=" + name + "&email=" + email + "&tel=" + telephone + "&password=" + password
+                });
 
-            const res = await req.json();
-            window.location.href = 'login.php';
-            }}
-        });
+                const res = await req.json();
+                window.location.href = 'login.php';
+            }
+        }
+    });
 </script>

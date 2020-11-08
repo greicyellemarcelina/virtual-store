@@ -26,7 +26,7 @@
 }
 
 .head-fix {
-    position: fixed;
+   position: fixed;
     top: 0;
     width: 100%;
     z-index: 1040;
@@ -128,4 +128,12 @@
 .color-hover:hover {
     color: #F27092;
     text-decoration: none;
+}
+
+.txt-cad-user:hover {
+    color: #F27092;
+}
+
+.txt-init-session:hover {
+    color: #F27092;
 }

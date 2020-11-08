@@ -16,7 +16,6 @@
 <?php
 //db
 require_once("../db/db.php");
-
 ?>
 
 <body>
@@ -56,7 +55,7 @@ require_once("../db/db.php");
                     <a href="../index.php" class="font-narrow color-f27092 color-hover">INÍCIO</a>
                 </div>
                 <div class="top-3-child-2 margin-right-18">
-                    <a href="index.php" class="font-narrow color-black color-hover">PRODUTOS</a>
+                    <a href="../products.php" class="font-narrow color-black color-hover">PRODUTOS</a>
                 </div>
                 <div class="top-3-child-3">
                     <a href="../contact/index.php" class="font-narrow color-black color-hover">CONTATO</a>
@@ -72,7 +71,7 @@ require_once("../db/db.php");
             </div>
             <div class="container-form">
                 <div class="container-form-1">
-                    <form action="index.php" method="POST">
+                    <form action="ajax-login.php" method="POST">
                         <div class="padding-12">
                             <label class="font-narrow">E-MAIL</label><br>
                             <input class="font-narrow" type="text" name="txt-email" id="txt-email" placeholder="ex.: mariasilva@example.com">
@@ -89,7 +88,7 @@ require_once("../db/db.php");
                         </div>
                         <div class="container-btn-login padding-12">
                             <div class="btn-login">
-                                <button type="submit" class="btn-login" id="btn-login">
+                                <button type="button" class="btn-login" id="btn-login">
                                     <p class="txt-login font-size-16 color-white font-narrow">
                                         INICIAR SESSÃO
                                     </p>
@@ -182,3 +181,22 @@ require_once("../db/db.php");
 </body>
 
 </html>
+<script>
+    const button = document.getElementById("btn-login");
+    button.addEventListener("click", async () => {
+       
+        const email = document.getElementById("txt-email").value;
+        const password = document.getElementById("txt-password").value;
+        const req = await fetch("ajax-login.php", {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            method: "POST",
+            body: "email=" + email + "&password=" + password
+        });
+
+        const res = await req.json();
+        window.location.href = '../index.php';
+    
+    });
+</script>

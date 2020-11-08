@@ -1,3 +1,14 @@
+.container-contact {
+    display: flex;
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+.body-2 {
+    width: 45%;
+    float: left;
+}
+
 .container-form-contact {
     width: 55%;
     float: right;
@@ -8,11 +19,6 @@
     justify-content: flex-start;
     padding-left: 32px;
 }
-.body-2 {
-    width: 45%;
-    float: left;
-    padding-left: 100px;
-}
 
 #txt-name, #txt-email, #txt-tel, #txt-message, #txt-send {
     width: 600px;
@@ -20,26 +26,32 @@
     border: 1px solid #cccbcb;
     padding: 4px;
 }
-#txt-message {
-    height: 100px;
-}
+
 .btn-send {
     width: 300px;
     height: 32px;
     background: rosybrown;
 }
+
 .txt-send {
     letter-spacing: 2px;
     text-align: center;
     padding-top: 4px;
     text-decoration: none;
 }
+
 .txt-send:hover {
     font-size: 18px !important;
     transition-duration: 0;
     margin: 0;
 }
+
 .btn-send {
-    color: rosybrown !important; 
+    color: rosybrown !important;
     float: right;
 }
+
+#txt-message {
+    height: 100px;
+}
+
