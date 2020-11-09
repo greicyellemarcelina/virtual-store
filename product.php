@@ -29,8 +29,6 @@ session_start();
 
 try {
     $id = $_SESSION["id"];
-    print_r("ID   ===  ");
-    var_dump($id);
     if ($id !== NULL) {
         $query1 = ("SELECT * FROM `user` WHERE `id` = $id");
         $result1 = mysqli_query($conn, $query1);
@@ -50,6 +48,21 @@ $result = mysqli_query($conn, $query);
 $product = mysqli_fetch_assoc($result);
 $value_item = $product['value_item'];
 $value_item = number_format($value_item, 2, ',', '.');
+
+
+
+/**************************************************/
+/*********** get quant item in cart ***************/
+$query2 = ("SELECT COUNT(`session_id`) AS numberOfItens FROM shopping_cart WHERE `session_id` = $id");
+$result2 = mysqli_query($conn, $query2);
+$cartInfo = mysqli_fetch_assoc($result2);
+$quantity_item_cart = $cartInfo['numberOfItens'];
+
+if ($quantity_item_cart == NULL) {
+    $quantity_item_cart = 0;
+}
+/***************** end get item ******************/
+/**************************************************/
 
 
 function calculation_negotiate(
@@ -141,7 +154,7 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
                                     <?php
                                     if ($id == NULL) { ?>
                                         <script>
-                                            document.getElementById("container-register").innerHTML = '<div class="register-child-1" id="register-child-1"><a href="account/register.php" class="font-condensed color-black">CADASTRE-SE</a></div><span>|</span><div class="register-child-2"><a href="account/login.php" class="font-condensed color-black"> INICIAR SESSÃO</a></div><div class="register-child-3"><i class="fa fa-cart-arrow-down font-size-24" aria-hidden="true"></i><div class="number-items-layout"><p class="color-white font-size-12 padding-left-6">0</p></div></div><div class="register-child-3"><div class=""><p class="color-black font-size-12 padding-left-6"></p></div></div>';
+                                            document.getElementById("container-register").innerHTML = '<div class="register-child-1" id="register-child-1"><a href="account/register.php" class="font-condensed color-black">CADASTRE-SE</a></div><span>|</span><div class="register-child-2"><a href="account/login.php" class="font-condensed color-black"> INICIAR SESSÃO</a></div><div class="register-child-3"><div class=""><p class="color-black font-size-12 padding-left-6"></p></div></div>';
                                         </script>
                                     <?php } else {
                                         echo $userCredential['name'];
@@ -159,6 +172,14 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
                                 </button>
                             </div>
                         </form>
+                    </div>
+                    <div class="register-child-3">
+                        <i class="fa fa-cart-arrow-down font-size-32" aria-hidden="true"></i>
+                        <div class="number-items-layout">
+                            <p class="color-white font-size-12 padding-left-6">
+                                <?= $quantity_item_cart ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -454,6 +475,7 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
+                                        <!--  <form action="ajax-add-cart.php" method="post"> -->
                                         <div class="modal-body modal-body-buy">
                                             <div class="container-product-body">
                                                 <span class="font-narrow padding-left-12 padding-top-6 padding-bottom-6">
@@ -479,7 +501,7 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
                                                                 <button class="btn-remove-item" onclick="subtract()">
                                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                                 </button>
-                                                                <input class="input-quanity" id="input-quantity-item" value="1">
+                                                                <input class="input-quanity" id="input-quantity-item" name="input-quantity-item" value="1">
                                                                 <button class="btn-add-item" onclick="add()">
                                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                                 </button>
@@ -552,17 +574,21 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
                                             </div>
                                         </div>
                                         <div class="modal-footer modal-footer-buy">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span class="txt-add-cart font-narrow font-size-14 color-f94372"> ADICIONAR AO CARRINHO <span>
-                                            </button>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                <span class="txt-see-products font-narrow font-size-14 color-f27092"> VER MAIS PRODUTOS <span>
-                                            </button>
+                                            <button type="submit" id="btn-add-item-cart" class="close" data-dismiss="modal" aria-label="Fechar"> 
+                                                <!-- <button type="submit" id="btn-add-item-cart"> -->
+                                                    <span class="txt-add-cart font-narrow font-size-14 color-f94372"> ADICIONAR AO CARRINHO <span>
+                                                </button>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                    <span class="txt-see-products font-narrow font-size-14 color-f27092"> VER MAIS PRODUTOS <span>
+                                                </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <input id="input-session-id" name="input-session-id" type="hidden" value="<?= $id ?>">
+                        <input id="input-product-id" name="input-product-id" type="hidden" value="<?= $cod ?>">
+                        <!-- </form> -->
                         <br>
                         <div class="product-freight font-size-16">
                             <i class="fa fa-truck" aria-hidden="true"></i>
@@ -591,7 +617,7 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
             </div>
             <br>
         </div>
-        <input id="input-id-session" type="hidden" value="<?= $id ?>">
+
         <div class="container-footer">
             <div class="container-footer-1">
 
@@ -716,7 +742,7 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
         });
 
         if (zipCode !== "") {
-            let amountFreight = document.getElementById("txt-amount-freight").innerText;
+            let amountFreight = document.getElementById("amount-freight").value;
             amountFreight = replaceNumber(amountFreight);
             if (amountFreight == "") {
                 amountFreight = 0;
@@ -771,7 +797,7 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
         });
 
         if (zipCode !== "") {
-            let amountFreight = document.getElementById("txt-amount-freight").innerText;
+            let amountFreight = document.getElementById("amount-freight").value;
             amountFreight = replaceNumber(amountFreight);
             if (amountFreight == "") {
                 amountFreight = 0;
@@ -814,7 +840,7 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
     /******************************* verify session *******************************/
     /******************************************************************************/
     const btnBuy = document.getElementById("btn-buy");
-    const inputIdSession = document.getElementById("input-id-session").value;
+    const inputIdSession = document.getElementById("input-session-id").value;
     btnBuy.addEventListener("click", async () => {
         if (inputIdSession == "") {
             alert("Voce precisa fazer login");
@@ -865,8 +891,7 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
         let amountFreight = res.value_freight;
         let deadline = res.deadline;
         let divAmountZipCode = document.getElementById("div-amount-freight-modal");
-        divAmountZipCode.innerHTML = '<p><input type="checkbox" class="font-narrow font-size-14" id="amount-freight" name="amount-freight" checked><label for="amount-freight" id="txt-amount-freight" class="font-narrow font-size-14 margin-0 padding-left-6"> SEDEX R$' +
-            amountFreight + '</label></p><p class="font-narrow font-size-14"> Prazo de entrega: ' + deadline + ' dias<p>';
+        divAmountZipCode.innerHTML = '<p><input type="text" class="font-narrow font-size-14 input-not-border" id="amount-freight" name="amount-freight" value="SEDEX R$' + amountFreight + '">' + '</p><p class="font-narrow font-size-14"> Prazo de entrega: ' + deadline + ' dias<p>';
 
         let quantity = document.getElementById("input-quantity-item").value;
         let amountSubTotalCalc = amountItemReplaced * quantity;
@@ -888,4 +913,29 @@ $parcel_12 = calculation_negotiate($product['value_item'], 12, 30);
         document.getElementById("input-value-parc").value = amountParc;
 
     });
+
+    /******************************************************************************/
+    /************************** add item in shopping cart *************************/
+    /******************************************************************************/
+    
+    const btnAddCart = document.getElementById("btn-add-item-cart");
+    btnAddCart.addEventListener("click", async () => {
+        let valueFreight = document.getElementById("amount-freight").value;
+        let codProduct = document.getElementById("input-product-id").value;
+        let sessionId = document.getElementById("input-session-id").value;
+        let quantity = document.getElementById("input-quantity-item").value;
+
+        const req = await fetch("ajax-add-cart.php", { // COM POST + FORM
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            method: "POST",
+            body: "valueFreight=" + valueFreight + "&cod=" + codProduct + "&sessionId=" + sessionId + "&quantity=" + quantity
+        });
+
+        const res = await req.json();
+       
+    });
+
+
 </script>

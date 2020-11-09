@@ -12,6 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Open+Sans+Condensed:wght@300&family=PT+Sans+Narrow&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/3ebafaacf8.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- -Javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
 </head>
 <?php
 //db
@@ -29,8 +35,23 @@ $count = $results->num_rows;
 if ($count > 16) {
     $count = 16;
 }
-/***************** end get prducts ****************/
+/**************** end get products ****************/
 /**************************************************/
+
+
+/**************************************************/
+/*********** get quant item in cart ***************/
+$query2 = ("SELECT COUNT(`session_id`) AS numberOfItens FROM shopping_cart WHERE `session_id` = $id");
+$result2 = mysqli_query($conn, $query2);
+$cartInfo = mysqli_fetch_assoc($result2);
+$quantity_item_cart = $cartInfo['numberOfItens'];
+
+if ($quantity_item_cart == NULL) {
+    $quantity_item_cart = 0;
+}
+/***************** end get item ******************/
+/**************************************************/
+
 
 function calculation_negotiate_2x(
     $amount_item,
@@ -89,7 +110,7 @@ try {
                                     <?php
                                     if ($id == NULL) {
                                     ?> <script>
-                                            document.getElementById("container-register").innerHTML = '<div class="register-child-1" id="register-child-1"><a href="account/register.php" class="font-condensed color-black">CADASTRE-SE</a></div><span>|</span><div class="register-child-2"><a href="account/login.php" class="font-condensed color-black"> INICIAR SESSÃO</a></div><div class="register-child-3"><i class="fa fa-cart-arrow-down font-size-24" aria-hidden="true"></i><div class="number-items-layout"><p class="color-white font-size-12 padding-left-6">0</p></div></div><div class="register-child-3"><div class=""><p class="color-black font-size-12 padding-left-6"></p></div></div>';
+                                            document.getElementById("container-register").innerHTML = '<div class="register-child-1" id="register-child-1"><a href="account/register.php" class="font-condensed color-black">CADASTRE-SE</a></div><span>|</span><div class="register-child-2"><a href="account/login.php" class="font-condensed color-black"> INICIAR SESSÃO</a></div><div class="register-child-3"><div class=""><p class="color-black font-size-12 padding-left-6"></p></div></div>';
                                         </script>
                                     <?php } else {
                                         echo $userInfo['name'];
@@ -101,12 +122,67 @@ try {
                             |
                         </div>
                         <form method="POST" action="account/ajax-signout.php">
-                            <div class="padding-left-4 padding-top-2 font-size-14 font-narrow">
+                            <div class="padding-left-4 padding-top-2 padding-right-6 font-size-14 font-narrow">
                                 <button type="submit" class="link-signout color-black btn-not-border" id="btn-ajax-signout">
                                     Sair
                                 </button>
                             </div>
                         </form>
+                    </div>
+                    <input type="hidden" name="txt-id" value="<?= $id ?>">
+                    <div class="register-child-3 padding-left-12">
+                        <button class="btn-shopping-cart btn-not-border" type="button" data-toggle="modal" data-target="#modalExemplo">
+                            <i class="fa fa-cart-arrow-down font-size-32" aria-hidden="true"></i>
+                            <div class="number-items-layout">
+                                <p class="txt-quantity-hover color-white font-size-12">
+                                    <?= $quantity_item_cart ?>
+                                </p>
+                            </div>
+                        </button>
+                        <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                        <div class="container-modal-top">
+                                            <div class="div-mercado-pago">
+                                                <a class="link-top-mercado-pago color-f27092 font-narrow font-size-14" font-size-12 href="#">
+                                                    MERCADO PAGO
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="margin-botton-12">
+                                            <p class="txt-card-credit font-size-14 font-narrow font-weight-1000">
+                                                Cartões de crédito
+                                            </p>
+                                        </div>
+                                        <div class="img-payments">
+                                            <img src="img/payment/visa.png" class="img-modal-payment">
+                                            <img src="img/payment/master-product.png" class="img-modal-payment">
+                                            <img src="img/payment/hipercard.png" class="img-modal-payment">
+                                            <img src="img/payment/american-express.jpg" class="img-modal-payment">
+                                            <img src="img/payment/elo.png" class="img-modal-payment">
+                                        </div>
+                                        <br>
+                                        <div class="border-dotted">
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="register-child-3">
+                        <div class="">
+                            <p class="color-black font-size-12 padding-left-6"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -256,3 +332,22 @@ try {
 </body>
 
 </html>
+<script>
+    /*
+    const btnShoppingCart = document.getElementById("btn-shopping-cart");
+    btnShoppingCart.addEventListener("click", async () => {
+        let sessionId = document.getElementById("input-session-id").value;
+
+        const req = await fetch("ajax-shopping-cart.php", { // COM POST + FORM
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            method: "POST",
+            body: "sessionId=" + sessionId
+        });
+
+        const res = await req.json();
+
+    });
+    */
+</script>

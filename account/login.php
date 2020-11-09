@@ -43,7 +43,7 @@ require_once("../db/db.php");
                         <a href="login.php" class="font-condensed color-black"> INICIAR SESSÃO</a>
                     </div>
                     <div class="register-child-3">
-                        <i class="fa fa-cart-arrow-down font-size-24" aria-hidden="true"></i>
+                        <i class="fa fa-cart-arrow-down font-size-32" aria-hidden="true"></i>
                         <div class="number-items-layout">
                             <p class="color-white font-size-12 padding-left-6">0</p>
                         </div>
@@ -61,7 +61,6 @@ require_once("../db/db.php");
                     <a href="../contact/index.php" class="font-narrow color-black color-hover">CONTATO</a>
                 </div>
             </div>
-
         </div>
         <div class="container-body-login">
             <div class="body-1">
@@ -82,9 +81,11 @@ require_once("../db/db.php");
                             <input class="font-narrow" type="password" name="txt-password" id="txt-password">
                         </div>
                         <div>
-                            <a class="color-b2b0b0" href="">
+                            <a class="color-b2b0b0" href="forgot-password.php">
                                 <p class="txt-forgot-password font-balsamiq font-size-11 color-b2b0b0">Esqueceu a senha?</p>
                             </a>
+                        </div>
+                        <div class="div-account-not-exists" id="div-account-not-exists">
                         </div>
                         <div class="container-btn-login padding-12">
                             <div class="btn-login">
@@ -182,9 +183,10 @@ require_once("../db/db.php");
 
 </html>
 <script>
+    
     const button = document.getElementById("btn-login");
     button.addEventListener("click", async () => {
-       
+
         const email = document.getElementById("txt-email").value;
         const password = document.getElementById("txt-password").value;
         const req = await fetch("ajax-login.php", {
@@ -196,7 +198,12 @@ require_once("../db/db.php");
         });
 
         const res = await req.json();
-        window.location.href = '../index.php';
-    
+        if (res.id == 'id_not_found') {
+            document.getElementById("div-account-not-exists").innerHTML = '<p class="txt-account-not-exists padding-left-12 font-balsamiq font-size-11 color-red">Usuário ou senha inválidos.</p>';
+        } else {
+            window.location.href = '../index.php';
+        }
+
     });
+    
 </script>

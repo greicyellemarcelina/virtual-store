@@ -43,7 +43,7 @@ require_once("../db/db.php");
                         <a href="login.php" class="font-condensed color-black"> INICIAR SESSÃO</a>
                     </div>
                     <div class="register-child-3">
-                        <i class="fa fa-cart-arrow-down font-size-24" aria-hidden="true"></i>
+                        <i class="fa fa-cart-arrow-down font-size-32" aria-hidden="true"></i>
                         <div class="number-items-layout">
                             <p class="color-white font-size-12 padding-left-6">0</p>
                         </div>
@@ -71,41 +71,48 @@ require_once("../db/db.php");
             </div>
             <div class="container-form">
                 <div class="container-form-1">
-                    <form action="#" method="POST">
+                    <form action="ajax-register.php" method="POST">
                         <div class="padding-12">
                             <label class="font-narrow">NOME COMPLETO</label>
                             <div>
                                 <span id="messageErrorName" style="color: red; font-size: 11px"></span>
                             </div>
-                            <input class="font-narrow" type="text" name="txt-name" id="txt-name" placeholder="ex.: Maria Silva">
+                            <input class="font-narrow" type="text" name="txt-name" id="txt-name" placeholder="ex.: Maria Silva" required>
                         </div>
                         <div class="padding-12">
                             <label class="font-narrow">E-MAIL</label>
                             <div>
                                 <span id="messageErrorEmail" style="color: red; font-size: 11px"></span>
                             </div>
-                            <input class="font-narrow" type="text" name="txt-email" id="txt-email" placeholder="ex.: mariasilva@example.com">
+                            <input class="font-narrow" type="text" name="txt-email" id="txt-email" placeholder="ex.: mariasilva@example.com" required>
                         </div>
                         <div class="padding-12">
                             <label class="font-narrow">TELEFONE</label>
                             <div>
                                 <span id="messageErrorPhone" style="color: red; font-size: 11px"></span>
                             </div>
-                            <input class="font-narrow" type="number" name="txt-tel" id="txt-tel" placeholder="ex.: 11999999999">
+                            <input class="font-narrow" type="number" name="txt-tel" id="txt-tel" placeholder="ex.: 11999999999" required>
+                        </div>
+                        <div class="padding-12">
+                            <label class="font-narrow">CPF (Somente números)</label>
+                            <div>
+                                <span id="messageErrorCpf" style="color: red; font-size: 11px"></span>
+                            </div>
+                            <input class="font-narrow" type="number" name="txt-cpf" id="txt-cpf" placeholder="ex.: 00000000000" required>
                         </div>
                         <div class="padding-12">
                             <label class="font-narrow">SENHA</label>
                             <div>
                                 <span id="messageErrorPassword" style="color: red; font-size: 11px"></span>
                             </div>
-                            <input class="font-narrow" type="password" name="txt-password" id="txt-password">
+                            <input class="font-narrow" type="password" name="txt-password" id="txt-password" required>
                         </div>
                         <div class="padding-12">
                             <label class="font-narrow">CONFIRMAR SENHA</label>
                             <div>
                                 <span id="messageErrorConfirmPassword" style="color: red; font-size: 11px"></span>
                             </div>
-                            <input class="font-narrow" type="password" name="txt-confirm-password" id="txt-confirm-password">
+                            <input class="font-narrow" type="password" name="txt-confirm-password" id="txt-confirm-password" required>
                         </div>
                         <br>
                         <div class="container-btn-view-all">
@@ -211,21 +218,20 @@ require_once("../db/db.php");
 </html>
 
 <script>
-    
     function isEmail(email) {
         var resp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return resp.test(String(email).toLowerCase());
     }
 
     const button = document.getElementById("btn-ajax-register");
-
     button.addEventListener("click", async () => {
         const name = document.getElementById("txt-name").value;
         const email = document.getElementById("txt-email").value;
+        const cpf = document.getElementById("txt-cpf").value;
         const telephone = document.getElementById("txt-tel").value;
         const password = document.getElementById("txt-password").value;
         const confirmPassword = document.getElementById("txt-confirm-password").value;
-       
+
         let bool = true;
 
         if (bool) {
@@ -241,10 +247,15 @@ require_once("../db/db.php");
             } else {
                 document.getElementById("messageErrorEmail").innerHTML = '';
             }
-            if (telephone < 11) {
-                document.getElementById("messageErrorPhone").innerHTML = '* Por favor digite um telefone válido.';
+            if ((cpf < 11) || (cpf > 11)) {
+                document.getElementById("messageErrorCpf").innerHTML = '* Por favor digite um cpf válido.';
             } else {
-                document.getElementById("messageErrorPhone").innerHTML = '';
+                document.getElementById("messageErrorCpf").innerHTML = '';
+            }
+            if (cpf == '') {
+                document.getElementById("messageErrorCpf").innerHTML = '* Cpf é obrigatório.';
+            } else {
+                document.getElementById("messageErrorCpf").innerHTML = '';
             }
 
             if (password.length < 8) {
@@ -259,17 +270,17 @@ require_once("../db/db.php");
             }
             bool = false;
             if (!bool) {
-                
                 const req = await fetch("ajax-register.php", {
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
                     method: "POST",
-                    body: "name=" + name + "&email=" + email + "&tel=" + telephone + "&password=" + password
+                    body: "name=" + name + "&email=" + email + "&cpf=" + cpf + "&tel=" + telephone + "&password=" + password
                 });
 
                 const res = await req.json();
-                window.location.href = 'login.php';
+                alert(res.id);
+               
             }
         }
     });

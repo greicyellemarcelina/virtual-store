@@ -133,6 +133,13 @@ if ($userInfoAddress) {
                                 </div>
                                 <input class="font-narrow" type="text" name="txt-name-profile" id="txt-name-profile" value="<?= $userInfo['name'] ?>" placeholder="ex.: Maria Silva">
                             </div>
+                            <div class="col padding-12">
+                                <label class="font-narrow">CPF</label>
+                                <div>
+                                    <span id="messageErrorCpf" style="color: red; font-size: 11px"></span>
+                                </div>
+                                <input class="font-narrow" type="text" name="txt-cpf-profile" id="txt-cpf-profile" value="<?= $userInfo['cpf'] ?>" placeholder="ex.: 00000000000">
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="col padding-12">

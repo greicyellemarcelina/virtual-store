@@ -10,15 +10,17 @@ $query = ("SELECT * FROM `user` WHERE `email` = '$email' AND `password` = '$pass
 $result = mysqli_query($conn, $query);
 $userCredential = mysqli_fetch_assoc($result);
 
-$_SESSION["name"] = $userCredential['name'];
-$_SESSION["id"] = $userCredential['id'];
-$id = $_SESSION['id'];
-
 if (!$userCredential) {
+    $id = 'id_not_found';
     unset($_SESSION["id"]);
     unset($_SESSION["name"]);
     session_destroy();
+} else {
+    $_SESSION["name"] = $userCredential['name'];
+    $_SESSION["id"] = $userCredential['id'];
+    $id = $_SESSION['id'];
 }
+
 
 $arr = [
     "id" => $id

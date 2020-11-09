@@ -1,37 +1,22 @@
-<?php
-$time = 2 * 60 * 60; // 
-session_set_cookie_params($time);
-session_start();
-require_once("../db/db.php");
-
-$id = $_SESSION['id'];
-
-#######################################################
-
-$query = ("SELECT * FROM `user` WHERE `id` = $id");
-$result = mysqli_query($conn, $query);
-$userInfo = mysqli_fetch_assoc($result);
-
-#######################################################
-
-?>
 <!DOCTYPE html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Loja Virtual</title>
+    <title>Forgot Password</title>
     <link rel="stylesheet" type="text/css" href="../css/universal.css">
     <link rel="stylesheet" type="text/css" href="../css/top.css">
     <link rel="stylesheet" type="text/css" href="../css/body.css">
     <link rel="stylesheet" type="text/css" href="../css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/register.css">
-    <link rel="stylesheet" type="text/css" href="css/my_account.css">
     <!-- imports -->
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Open+Sans+Condensed:wght@300&family=PT+Sans+Narrow&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/3ebafaacf8.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<html>
+<?php
+//db
+require_once("../db/db.php");
+?>
 
 <body>
     <div class="container-universal">
@@ -50,32 +35,15 @@ $userInfo = mysqli_fetch_assoc($result);
                     <img src="../img/logo.png" id="img-logo-width">
                 </div>
                 <div class="container-register">
-                    <div class="padding-right-32">
-                        <div class="register-child-4">
-                            <a class="link-my-account color-f27092" href="my_account.php">
-                                <div class="register-child-4-icon padding-right-6">
-                                    <i class="fa fa-user-circle-o icon-user-name font-size-14" aria-hidden="true"></i>
-                                </div>
-                                <div>
-                                    <p class="txt-user-name font-size-16 font-narrow">
-                                        Olá, <?= $userInfo['name']; ?>
-                                    </p>
-                                </div>
-                            </a>
-                            <div class="padding-left-4 padding-right-4 color-d2d2d2">
-                                |
-                            </div>
-                            <form method="POST" action="ajax-signout.php">
-                                <div class="padding-left-4 padding-top-2 font-size-14 font-narrow">
-                                    <button type="submit" class="link-signout color-black" id="btn-ajax-signout">
-                                        Sair
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="register-child-1">
+                        <a href="register.php" class="font-condensed color-black">CADASTRE-SE</a>
+                    </div>
+                    <span>|</span>
+                    <div class="register-child-2">
+                        <a href="login.php" class="font-condensed color-black"> INICIAR SESSÃO</a>
                     </div>
                     <div class="register-child-3">
-                        <i class="fa fa-cart-arrow-down font-size-24" aria-hidden="true"></i>
+                        <i class="fa fa-cart-arrow-down font-size-32" aria-hidden="true"></i>
                         <div class="number-items-layout">
                             <p class="color-white font-size-12 padding-left-6">0</p>
                         </div>
@@ -93,91 +61,40 @@ $userInfo = mysqli_fetch_assoc($result);
                     <a href="../contact/index.php" class="font-narrow color-black color-hover">CONTATO</a>
                 </div>
             </div>
-
         </div>
-        <div class="container-body">
-            <div class="container-user-info padding-top-12">
-                <div class="site-map-info">
-                    <p class="txt-my-account font-narrow color-b2b0b0 font-size-14">
-                        Início / <strong class="color-black">Minha Conta</strong>
-                    </p>
-                </div>
-                <div>
-                    <p class="txt-my-account font-narrow font-size-24 font-weight-1000">
-                        Dados Pessoais
-                    </p>
-                </div>
-                <div class="user-info">
-                    <p class="txt-personal-date font-narrow">
-                        <?= $userInfo['name']; ?>
-                        <a href="profile.php" class="txt-link-edit font-condensed font-size-12 color-f27092">Editar</a><br>
-                        <?= $userInfo['email']; ?>
-                        <a href="profile.php" class="txt-link-edit font-condensed font-size-12 color-f27092">Editar</a><br>
-                        <?= $userInfo['cpf']; ?>
-                        <a href="profile.php" class="txt-link-edit font-condensed font-size-12 color-f27092">Editar</a>
-                    </p>
-                    <p>
-                        <a href="profile.php" class="txt-link-edit font-narrow color-f27092">Adicionar ou alterar endereço</a>
-                    </p>
-                </div>
-                <br>
-                <div>
-                    <p class="txt-my-account font-narrow font-size-24 font-weight-1000">
-                        Meus Pedidos
-                    </p>
-                </div>
-                <div class="table-purchases">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pedido</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Pagamento</th>
-                                <th scope="col">Frete</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="purchase.php?id=1" class="txt-purchase-id color-black">
-                                        #1288
-                                    </a>
-                                </td>
-                                <td>06/09/2020</td>
-                                <td class="color-30a730">Confirmado</td>
-                                <td>R$ 49,00</td>
-                                <td>R$ 120,00</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="purchase.php?id=1" class="txt-purchase-id color-black">
-                                        #1288
-                                    </a>
-                                </td>
-                                <td>06/09/2020</td>
-                                <td class="color-30a730">Confirmado</td>
-                                <td>R$ 49,00</td>
-                                <td>R$ 120,00</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="purchase.php?id=1" class="txt-purchase-id color-black">
-                                        #1288
-                                    </a>
-                                </td>
-                                <td>06/09/2020</td>
-                                <td class="color-30a730">Confirmado</td>
-                                <td>R$ 49,00</td>
-                                <td>R$ 120,00</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+        <div class="container-body-login">
+            <div class="body-1">
+                <p class="txt-body-1-info color-black font-size-11 font-balsamiq">
+                    Compre mais rápido e acompanhe seus pedidos em um só lugar!
+                </p>
             </div>
+            <div class="container-form">
+                <div class="container-form-1">
+                    <form action="ajax-forgot-password.php" method="POST">
+                        <div class="padding-12">
+                            <label class="font-narrow">E-MAIL CADASTRADO</label><br>
+                            <input class="font-narrow" type="text" name="txt-email" id="txt-email" placeholder="ex.: mariasilva@example.com">
 
+                        </div>
+                        <div class="div-account-not-exists" id="div-account-not-exists">
+                        </div>
+                        <div class="container-btn-login padding-12">
+                            <div class="btn-login">
+                                <button type="button" class="btn-login" id="btn-forgot-password">
+                                    <p class="txt-login font-size-16 color-white font-narrow">
+                                        RECUPERAR SENHA
+                                    </p>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container-register-login">
+            <p class="font-size-12 font-balsamiq">
+                Não possui uma conta? <a class="txt-not-account color-black" href="register.php"><strong>Cadastre-se</strong></a>
+            </p>
         </div>
         <div class="container-footer">
             <div class="container-footer-1">
@@ -202,7 +119,6 @@ $userInfo = mysqli_fetch_assoc($result);
                             CONTATO
                         </a>
                     </div>
-
                 </div>
                 <div class="footer-payment-post">
                     <label class="color-white font-size-16 font-narrow">
@@ -211,7 +127,6 @@ $userInfo = mysqli_fetch_assoc($result);
                     <div class="footer-payment">
                         <div class="footer-payment-item">
                             <img src="../img/payment/visa.png" class="img-footer-payment">
-
                         </div>
                         <div class="footer-payment-item">
                             <img src="../img/payment/master.jpg" class="img-footer-payment">
@@ -220,7 +135,6 @@ $userInfo = mysqli_fetch_assoc($result);
                             <img src="../img/payment/mercado-pago.png" class="img-footer-payment">
                         </div>
                     </div>
-
                     <label class="color-white font-size-16 font-narrow" id="txt-post">
                         FORMAS DE ENVIO
                     </label>
@@ -230,7 +144,6 @@ $userInfo = mysqli_fetch_assoc($result);
                         </div>
                         <div class="footer-post-item">
                             <img src="../img/post/sedex.png" class="img-footer-post">
-
                         </div>
                     </div>
                 </div>
@@ -254,25 +167,30 @@ $userInfo = mysqli_fetch_assoc($result);
                 </div>
             </div>
         </div>
+
     </div>
 
 </body>
 
 </html>
 <script>
-    const button = document.getElementById("btn-ajax-signout");
-
+    const button = document.getElementById("btn-forgot-password");
     button.addEventListener("click", async () => {
-        const req = await fetch("ajax-signout.php", { // COM POST + FORM
+        const email = document.getElementById("txt-email").value;
+        const req = await fetch("ajax-forgot-password.php", {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             method: "POST",
-            body: ""
+            body: "email=" + email
         });
 
         const res = await req.json();
-        window.location.href = 'login.php';
+        if (res.id == 'id_not_found') {
+            document.getElementById("div-account-not-exists").innerHTML = '<p class="txt-account-not-exists padding-left-12 font-balsamiq font-size-11 color-red">Conta não existe.</p>';
+        } else {
+            document.getElementById("div-account-not-exists").innerHTML = '<p class="txt-account-not-exists padding-left-12 font-balsamiq font-size-11 color-green">A nova senha foi enviada para o e-mail cadastrado.</p>';
+        }
 
     });
 </script>

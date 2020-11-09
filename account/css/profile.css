@@ -1,5 +1,5 @@
-#txt-name-profile {
-    width: 600px;
+#txt-name-profile, #txt-cpf-profile {
+    width: 286px;
     height: 42px;
     border: 1px solid #cccbcb;
     padding: 4px;
@@ -10,7 +10,8 @@
     height: 42px;
     border: 1px solid #cccbcb;
     padding: 4px;
-} 
+}
+
 #txt-street-profile {
     width: 332px;
     height: 42px;
@@ -32,7 +33,7 @@
     padding: 4px;
 }
 
-#txt-district-profile, #txt-city-profile  {
+#txt-district-profile, #txt-city-profile {
     width: 242px;
     height: 42px;
     border: 1px solid #cccbcb;
@@ -50,7 +51,7 @@
     float: right;
 }
 
-.btn-save:hover{
+.btn-save:hover {
     border: 0.1px solid #F27092;
     color: white;
     border-radius: 2px;

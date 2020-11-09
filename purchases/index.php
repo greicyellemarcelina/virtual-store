@@ -97,30 +97,6 @@ $userInfo = mysqli_fetch_assoc($result);
         </div>
         <div class="container-body">
             <div class="container-user-info padding-top-12">
-                <div class="site-map-info">
-                    <p class="txt-my-account font-narrow color-b2b0b0 font-size-14">
-                        Início / <strong class="color-black">Minha Conta</strong>
-                    </p>
-                </div>
-                <div>
-                    <p class="txt-my-account font-narrow font-size-24 font-weight-1000">
-                        Dados Pessoais
-                    </p>
-                </div>
-                <div class="user-info">
-                    <p class="txt-personal-date font-narrow">
-                        <?= $userInfo['name']; ?>
-                        <a href="profile.php" class="txt-link-edit font-condensed font-size-12 color-f27092">Editar</a><br>
-                        <?= $userInfo['email']; ?>
-                        <a href="profile.php" class="txt-link-edit font-condensed font-size-12 color-f27092">Editar</a><br>
-                        <?= $userInfo['cpf']; ?>
-                        <a href="profile.php" class="txt-link-edit font-condensed font-size-12 color-f27092">Editar</a>
-                    </p>
-                    <p>
-                        <a href="profile.php" class="txt-link-edit font-narrow color-f27092">Adicionar ou alterar endereço</a>
-                    </p>
-                </div>
-                <br>
                 <div>
                     <p class="txt-my-account font-narrow font-size-24 font-weight-1000">
                         Meus Pedidos

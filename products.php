@@ -17,6 +17,8 @@
 <?php
 //db
 require_once("db/db.php");
+$id = $_SESSION["id"];
+
 /**************************************************/
 /******************** get products ****************/
 $query = ("SELECT * FROM products");
@@ -24,6 +26,7 @@ $results = mysqli_query($conn, $query);
 $count = $results->num_rows;
 /**************************************************/
 /***************** end get products ***************/
+
 
 
 function calculation_negotiate_2x(
@@ -61,6 +64,19 @@ try {
     echo 'Exceção capturada: ',  $e->getMessage(), "\n";
 }
 
+/**************************************************/
+/*********** get quant item in cart ***************/
+$query2 = ("SELECT COUNT(`session_id`) AS numberOfItens FROM shopping_cart WHERE `session_id` = $id");
+$result2 = mysqli_query($conn, $query2);
+$cartInfo = mysqli_fetch_assoc($result2);
+$quantity_item_cart = $cartInfo['numberOfItens'];
+
+if ($quantity_item_cart == NULL) {
+    $quantity_item_cart = 0;
+}
+/***************** end get item ******************/
+/**************************************************/
+
 ?>
 
 <body>
@@ -91,7 +107,7 @@ try {
                                     <?php
                                     if ($id == NULL) { ?>
                                         <script>
-                                            document.getElementById("container-register").innerHTML = '<div class="register-child-1" id="register-child-1"><a href="account/register.php" class="font-condensed color-black">CADASTRE-SE</a></div><span>|</span><div class="register-child-2"><a href="account/login.php" class="font-condensed color-black"> INICIAR SESSÃO</a></div><div class="register-child-3"><i class="fa fa-cart-arrow-down font-size-24" aria-hidden="true"></i><div class="number-items-layout"><p class="color-white font-size-12 padding-left-6">0</p></div></div><div class="register-child-3"><div class=""><p class="color-black font-size-12 padding-left-6"></p></div></div>';
+                                            document.getElementById("container-register").innerHTML = '<div class="register-child-1" id="register-child-1"><a href="account/register.php" class="font-condensed color-black">CADASTRE-SE</a></div><span>|</span><div class="register-child-2"><a href="account/login.php" class="font-condensed color-black"> INICIAR SESSÃO</a></div><div class="register-child-3"><div class=""><p class="color-black font-size-12 padding-left-6"></p></div></div>';
                                         </script>
                                     <?php } else {
                                         echo $userCredential['name'];
@@ -109,6 +125,14 @@ try {
                                 </button>
                             </div>
                         </form>
+                    </div>
+                    <div class="register-child-3">
+                        <i class="fa fa-cart-arrow-down font-size-32" aria-hidden="true"></i>
+                        <div class="number-items-layout">
+                            <p class="color-white font-size-12 padding-left-6">
+                                <?= $quantity_item_cart ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

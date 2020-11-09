@@ -48,6 +48,14 @@
     color: #30a730;
 }
 
+.color-red {
+    color: red;
+}
+
+.color-green {
+    color: #228B22;
+}
+
 /* font-sizes */
 
 .font-size-11 {
@@ -83,7 +91,7 @@
 }
 
 .font-size-32 {
-    font-size: 32px;
+    font-size: 32px !important;
 }
 
 .font-size-42 {
@@ -259,3 +267,13 @@ thead {
     border: 0 !important;
     background: none;
 }
+
+.input-not-border {
+    border: 0 !important;
+}
+
+.btn-shopping-cart {
+    display: flex;
+}
+
+

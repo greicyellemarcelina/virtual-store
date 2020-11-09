@@ -21,7 +21,7 @@
     justify-content: center;
 }
 
-#txt-name, #txt-email, #txt-tel, #txt-password, #txt-confirm-password {
+#txt-name, #txt-email, #txt-tel, #txt-password, #txt-confirm-password, #txt-cpf {
     width: 600px;
     height: 42px;
     border: 1px solid #cccbcb;
